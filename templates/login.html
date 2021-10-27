@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login PIJ</title>
+	<link rel="stylesheet" href="/static/css/login.css">
+	<script src="/static/js/login.js"></script>
+	<script src="/static/js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<div style="color:white;position:absolute;left:50px;top:200px;">
+		<h1>
+			Want the payment more just?
+		</h1><h1>
+			Just COME HERE and have a Try!
+		</h1>
+		<p>BlockChain showed up with BitCoin in 2008, and now, we can make it more meaningful!</p>
+		<p>We can use it to make world a better place!</p>
+	</div>
+	
+	<div class="background-gradient" style="z-index:-1;">
+		<div class="mask" id="back"></div>
+	</div>
+    <form method="post">
+    <div id="log_page" class="card log_page custom-color">
+    	<h2 class="loginbox-title">邮箱帐号登录</h2>
+		{% csrf_token %}
+		<span id="user" onclick="chose_user()" class="not_chosen"><label for="log-user-name"><div class="user_logo"></div></label><input id="log-user-name" name="user" /></span>
+		<span id="pass" onclick="chose_pass()" class="not_chosen"><label for="log-password"><div class="pass_logo"></div></label><input type="password" id="log-password" name="pass" /></span>
+		<p id="err" class="no_err">Wrong User-name or Password</p>
+		<button type="submit" onclick="log()">Login</button>
+	</div>
+    </form>
+	<script type="text/javascript">
+		var token = "{{ csrf_token }}"
+		$.ajaxSetup({
+			// 全局设置
+			headers: { 'X-CSRFTOKEN': `${token}` },
+		});
+	</script>
+</body>
+</html>

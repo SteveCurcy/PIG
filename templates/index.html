@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pay In Just</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/index.js"></script>
+    <script type="text/javascript">
+    	window.onload = function(){
+            let user = sessionStorage.getItem("user");
+            let balance = "{{balance}}";
+            if (user == null) user = "请登录";
+            if (`${balance}` !== "") $("#balance").text("余额: "+parseFloat(balance).toFixed(2).toString());
+    		$("#user-info").html(user+'<div class="flash-bar"></div>');
+    	}
+    </script>
+</head>
+<body>
+<div class="wrap">
+	<a href="/index" class="link-home"></a>
+	<ul>
+		<li><a class="flash" href="javascript:void(0);" onclick="home()">主页<div class="flash-bar"></div></a></li>
+		<li><a class="flash" href="javascript:void(0);" onclick="func()">功能<div class="flash-bar"></div></a></li>
+		<li class="dropdown"><a class="dropbtn flash" id="user-info" href="/index"></a><div class="dropdown-content">
+            <a href="#" onclick="key_tog()">导入私钥</a>
+            <span id="_key" class="in_hid"  onmouseleave="key_hid()"><textarea placeholder="输入密钥" id="key"></textarea></br>
+            <input style="width: 100%;" type="button" value="输入" onclick="input_key()"></span>
+			<a href="#" id="balance">余额</a>
+			<a href="/logout/" onclick="logout()">注销</a>
+		</div>
+		</li>
+	</ul>
+</div>
+<div id="home" style="display:none;"><h1>HOME PAGE</h1></br>This part will have some content about us</div>
+<div id="func">
+<div class="navigate-frame">
+    <ul class="navigate">
+        <li id="sub" onclick="ch_navi(this)" class="chosen"><a href="javascript:void(0);" onclick="sub_tk()">发布任务</a></li>
+        <li id="recv" onclick="ch_navi(this)" ><a href="javascript:void(0);" onclick="get_avil_tk()">接受任务</a></li>
+        <li id="my_sub" onclick="ch_navi(this)" ><a href="javascript:void(0);" onclick="get_sub_tk()">我发布的</a></li>
+        <li id="my_recv" onclick="ch_navi(this)" ><a href="javascript:void(0);" onclick="get_recv_tk()">我接受的</a></li>
+        <li id="my_tk" onclick="ch_navi(this)" ><a href="javascript:void(0);" onclick="get_my_tk()">我的交易</a></li>
+    </ul>
+</div>
+<div id="op_tk" class="content-frame">
+    <label for="task_type">请选择任务类型</label>
+    <select id="task_type">
+        <option value="">--请选择任务类型--</option>
+        <option value="file-store" selected="selected" onclick="opt()">文件云存储</option>
+    </select>
+    <div id="file-store" class="file-store">
+    <form enctype="multipart/form-data" style="width:100%;">
+        <label id="for-file" for="file"><p>点击此区域上传文件</p></label><input type="file" id="file" style="display:none;" />
+        </br>
+        <label for="pay" style="margin-right:45px;">支付金额</label><input id="pay" placeholder="支付金额" />Ether</br>
+        <!-- <label for="deposit">交易打包费用</label><input id="deposit" placeholder="Tips:费用越高您的排队时延可能越小哦～ 推荐: 大于21219" />Wei</br> -->
+        <input id="load" type="button" onclick="submitTask()" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">
+    var token = "{{ csrf_token }}"
+    $.ajaxSetup({
+        // 全局设置
+        headers: { 'X-CSRFTOKEN': `${token}` },
+    });
+    $("#task_type").change(ch_typ);
+    $("#file").change(calc_cost);
+</script>
+</body>
+</html>

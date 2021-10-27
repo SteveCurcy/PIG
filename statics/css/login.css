@@ -1,0 +1,46 @@
+html,body {margin:0;top:0;left:0;width:100%;height:100%;font-size:medium;font-style:normal;font-weight:bold;font-family:微软雅黑;}
+input {border-radius:5px;margin-left:10px;}
+
+.loginbox-title {h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}}
+
+.user_logo {background-image:url('../img/user.png');background-size:100% 100%;width:40px;height:40px;}
+.pass_logo {background-image:url('../img/pass.png');background-size:100% 100%;width:40px;height:40px;}
+
+.card {margin:5px 20px;background-color:#FFFFFF;width:400px;min-height:500px;box-shadow:0 5px 5px 10px rgba(0,0,0,0.16);border-radius:5px;}
+
+.log_page {padding:10px 0;position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:space-around;width:400px;top:50px;right:150px;}
+.log_page button {color:#FFFFFF;background-color:#3B78FF;height:46px;min-width:100px;width:80%;border-radius:5px;outline:none;border:none;}
+.log_page button:hover {background-color:#3B78CC;}
+.log_page p {display:flex;width:80%;justify-content:space-around;}
+.log_page span {display:flex;width:80%;height:46px;justify-content:space-between;align-items:center;}
+.log_page span:active {outline:none;border:1px solid #3B78CC;}
+.log_page .not_chosen {border:1px solid #DADADA;}
+.log_page .active {outline:none;border:1px solid #3B78CC;}
+.log_page input {outline:none;border:none;width:250px;}
+.log_page .no_err {color:red;font-size:14px;display:none;}
+.log_page .err {color:red;font-size:14px;position:absolute;top:480px;}
+
+.background-gradient {
+    background: rgb(0, 0, 0);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.background-gradient .mask {
+    background-image: linear-gradient(to right, rgb(0, 0, 0), transparent),
+	url("../img/etherchain-grey.jpg");
+	// background-repeat: no-repeat;
+    background-position:center;
+    background-blend-mode:normal;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
